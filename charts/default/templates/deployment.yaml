@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Chart.Name }}
+  labels:
+    app: {{ .Chart.Name }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Chart.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Chart.Name }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: MONGODB_DATABASE
+              value: {{ .Values.env.MONGODB_DATABASE | quote }}
+            - name: DISCORD_GUILD_ID
+              value: {{ .Values.env.DISCORD_GUILD_ID | quote }}
+            - name: DISCORD_GLOBAL_STATISTICS_CHANNEL_ID
+              value: {{ .Values.env.DISCORD_GLOBAL_STATISTICS_CHANNEL_ID | quote }}
+            - name: DISCORD_CONTESTS_STATISTICS_CHANNEL_ID
+              value: {{ .Values.env.DISCORD_CONTESTS_STATISTICS_CHANNEL_ID | quote }}
+            - name: MONGODB_URL
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Chart.Name }}-secrets
+                  key: mongodb-url
+            - name: DISCORD_BOT_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Chart.Name }}-secrets
+                  key: discord-bot-token

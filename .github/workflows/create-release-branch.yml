@@ -1,0 +1,29 @@
+name: Create Release Branch Workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  create_branch:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Extract version from file
+        id: get-version
+        run: |
+          VERSION=$(./gradlew -q printProjectVersion)
+          echo "VERSION=${VERSION}" >> $GITHUB_ENV
+
+      - name: Create release branch
+        run: |
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+          git checkout -b release/${{ env.VERSION }}
+          git push origin release/${{ env.VERSION }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,0 +1,58 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '2.0.20'
+}
+
+group = 'eth.likespro'
+version = '1.0.0'
+
+repositories {
+    mavenCentral()
+}
+dependencies {
+    implementation 'de.vandermeer:asciitable:0.3.2'
+    implementation 'org.json:json:20231013'
+    implementation 'io.projectreactor:reactor-core:3.6.10'
+    implementation 'org.mongodb:mongodb-driver-reactivestreams:5.1.4'
+    implementation 'io.github.microutils:kotlin-logging-jvm:2.0.11'
+    implementation 'ch.qos.logback:logback-classic:1.4.12'
+    implementation "net.dv8tion:JDA:5.2.1"
+    testImplementation 'org.jetbrains.kotlin:kotlin-test'
+}
+
+test {
+    useJUnitPlatform()
+}
+kotlin {
+    jvmToolchain(21)
+}
+tasks.jar{
+    manifest {
+        attributes 'Main-Class': 'eth.likespro.MainKt'
+    }
+}
+tasks.register('fatJar', Jar) {
+    manifest {
+        attributes 'Main-Class': 'eth.likespro.MainKt'
+    }
+    archiveBaseName = rootProject.name + '-fat'
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    from { configurations.runtimeClasspath.collect { println("Packing "+it.name+" into fatJar"); it.isDirectory() ? it : zipTree(it) } } {
+        exclude 'META-INF/*.RSA', 'META-INF/*.SF', 'META-INF/*.DSA'
+    }
+    exclude("META-INF/*.RSA", "META-INF/*.DSA", "META-INF/*.SF")
+    with jar
+    exclude("META-INF/*.RSA", "META-INF/*.DSA", "META-INF/*.SF")
+}
+tasks.build{
+    dependsOn(fatJar)
+}
+tasks.register('printProjectName') {
+    doLast {
+        println rootProject.name
+    }
+}
+tasks.register('printProjectVersion') {
+    doLast {
+        println version
+    }
+}

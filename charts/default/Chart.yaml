@@ -1,0 +1,6 @@
+apiVersion: v2
+name: cp-programming-stats-bot
+version: 1.0.0
+description: A Helm chart for deploying Competitive Programming Statistics Bot
+
+type: application

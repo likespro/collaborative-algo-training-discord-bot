@@ -1,0 +1,18 @@
+replicaCount: 1
+
+image:
+  repository: ghcr.io/likespro/cp-programming-stats-bot
+  tag: "latest"
+  pullPolicy: Always
+
+env:
+  MONGODB_DATABASE: "cp-programming-stats-bot"
+  DISCORD_GUILD_ID: "-1"
+  DISCORD_GLOBAL_STATISTICS_CHANNEL_ID: "-1"
+  DISCORD_CONTESTS_STATISTICS_CHANNEL_ID: "-1"
+
+  # SECRETS
+  MONGODB_URL: "mongodb://localhost:27017"
+  DISCORD_BOT_TOKEN: "<TOKEN>"
+
+resources: { }
