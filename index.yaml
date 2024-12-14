@@ -1,0 +1,13 @@
+apiVersion: v1
+entries:
+  cp-programming-stats-bot:
+  - apiVersion: v2
+    created: "2024-12-14T18:45:49.592737654Z"
+    description: A Helm chart for deploying Competitive Programming Statistics Bot
+    digest: 483cdcadda631c64d1c4a67118dbb369a5834f7604f72e7d48b2ea909a0a59d7
+    name: cp-programming-stats-bot
+    type: application
+    urls:
+    - cp-programming-stats-bot-1.0.0.tgz
+    version: 1.0.0
+generated: "2024-12-14T18:45:49.592743565Z"
