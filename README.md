@@ -23,6 +23,9 @@
 
 
 ## Overview
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/f3f66d14f7a742d48ca08a260926e3c7)](https://app.codacy.com/gh/likespro/cp-programming-stats-bot?utm_source=github.com&utm_medium=referral&utm_content=likespro/cp-programming-stats-bot&utm_campaign=Badge_Grade)
+
 The goal of this Discord bot is to bring users' statistics from different competitive programming platforms right to Discord.
 ## How it works
 * Bot uses 2 text channels in your Guild to publish statistics: one (by default named `statistics`) to publish global leaderboard of tracked users, ranked by their rating, and another one (by default named `contests-statistics`) to publish current tracked users standings for each contest that is going on or ended no earlier than one week before.
