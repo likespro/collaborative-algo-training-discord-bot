@@ -221,7 +221,7 @@ fun main() {
 
         log.debug { "Editing messages..." }
         messagesContents.forEachIndexed { index, text ->
-            if(index < messagesIds.size) channel.editMessageById(messagesIds[index], text).queue()
+            if(index < messagesIds.size) channel.editMessageById(messagesIds[index], text).complete()
             else {
                 val messageId = channel.sendMessage(text).complete().idLong
                 Mono.from(sentMessagesCollection.insertOne(Document()
@@ -346,8 +346,8 @@ fun main() {
                         .append("platform", "codeforces")
                         .append("discordMessageId", messageId))).block()!!
                 }
-                else if(index < messagesIds.size - 1) channel.editMessageById(messagesIds[index], text).queue()
-                else if(index == messagesIds.size) channel.editMessageById(messagesIds.last(), text).queue()
+                else if(index < messagesIds.size - 1) channel.editMessageById(messagesIds[index], text).complete()
+                else if(index == messagesIds.size) channel.editMessageById(messagesIds.last(), text).complete()
                 i = index
             }
             if(messagesIds.isEmpty()){

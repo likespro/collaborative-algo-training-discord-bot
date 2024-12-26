@@ -48,7 +48,7 @@ The goal of this Discord bot is to bring users' statistics from different compet
 * CodeForces
 ## Requirements
 * Running MongoDB server - you can download it on www.mongodb.com or use free cluster from MongoDB Atlas - https://cloud.mongodb.com
-* Discord bot token - you can create it on https://discord.com/developers/applications. The bot needs to be installed to your Guild and need to have scopes `applications.commands`, `bot` and permissions `Manage Channels`, `Send Messages`. You can set them in your dashboard before bot installation to Guild.
+* Discord bot token - you can create it on https://discord.com/developers/applications. The bot needs to be installed to your Guild and need to have scopes `applications.commands`, `bot` and permissions `Manage Channels`, `Send Messages`. You also need to enable all Privileged Gateway Intents. You can set all them in your dashboard before bot installation to Guild.
 ## How to install (traditional)
 * Build jars with `./gradlew build` or download already built fat jar from the last release on https://github.com/likespro/cp-programming-stats-bot/releases
 * Ensure you have set all necessary environment variables (see the [list](#environment-variables) below)
