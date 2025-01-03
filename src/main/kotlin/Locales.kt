@@ -5,6 +5,7 @@ import org.bson.Document
 class Locales {
     companion object{
         val EN = Document()
+            .append("version", 2L)
             .append("locale", "en")
             .append("primitives", Document()
                 .append("months", Document()
@@ -44,9 +45,11 @@ class Locales {
                 .append("contest_statistics_username", "Username")
                 .append("contest_statistics_penalty", "Penalty")
                 .append("contest_statistics_score", "Score")
-                .append("contest_statistics_title", "## Contest Statistics on %PLATFORM: %CONTEST | Contest status: %STATUS | Elapsed %ELAPSED")
+                .append("contest_statistics_title", "## Contest Statistics on %PLATFORM: %CONTEST | Contest status: %STATUS | Started %STARTED | %ENDS_OR_ENDED")
                 .append("contest_statistics_failed_fetching", "Failed fetching (not participated or  changed usernames)")
                 .append("contest_statistics_for_fun_disclaimer", "**Users starting with * are tracked just for fun.**")
+                .append("contest_statistics_ends", "Ends")
+                .append("contest_statistics_ended", "Ended")
                 .append("contest_statistics_last_updated", "Last updated")
 
                 .append("cmd_track", "Track specified user on specifies platform")
